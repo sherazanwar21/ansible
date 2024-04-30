@@ -1,0 +1,11 @@
+---
+- name: Create a new file
+  hosts: all
+  become: yes
+  tasks:
+    - name: Create a file
+      file: 
+        path: /home/ec2-user/file1test
+        state: touch
+        mode: '0777'
+        
