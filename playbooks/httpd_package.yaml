@@ -1,0 +1,40 @@
+---
+- name: Install httpd Package
+  hosts: all
+  become: yes
+  vars:
+    package: httpd
+  tasks:
+
+    - name: Install httpd
+      yum: 
+        name: "{{package}}"
+        state: latest
+    - name:
+      debug:
+        msg: "Httpd has been installed"
+
+    - name: start and enable httpd
+      service:
+        name: "{{package}}"
+        state: started
+        enabled: yes
+      ignore_errors: yes
+
+    - name: create a index.hmtl
+      lineinfile:
+        path: /var/www/html/index.html
+        line: "I created this running a playbook!"
+        create: yes
+
+  # - name: update firewall
+  #   firewalld:
+  #     service: httpd
+  #     permanent: yes
+  #     state: enabled
+
+  # - name: reload httpd
+  #   service:
+  #     name: {{package}}
+  #     state: reloaded
+

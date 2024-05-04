@@ -1,0 +1,14 @@
+# ---
+# - name: install needed packages
+#   yum:
+#     name: "{{pkgs}}"
+#     state: present
+#   notify:
+#   - start packages
+
+---
+- name: Start services
+  yum:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ pkgs }}"
