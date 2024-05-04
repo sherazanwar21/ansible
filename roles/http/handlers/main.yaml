@@ -1,0 +1,17 @@
+--- 
+- name: start/enable httpd
+  service:
+    name: "{{pkg}}"
+    state: started
+    enabled: yes
+
+- name: success
+  debug:
+    msg: "Last task was successful"
+
+- name: reload firewall
+  service:
+    name: firewalld
+    state: reloaded
+    
+    

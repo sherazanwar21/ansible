@@ -1,0 +1,8 @@
+---
+- name: Install packages
+  hosts: all
+  become: yes
+  roles:
+  - /home/ec2-user/ansible/ansible/roles/http
+  - /home/ec2-user/ansible/ansible/roles/basicinstall
+        
